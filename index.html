@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Site</title>
+    <link rel = "stylesheet" href = "style.css">
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <section class = "header">
+        <nav>
+            <a href="index.html"><img src="images/logo.jpg"></a>
+            <div class="nav-links" id = "navLinks">
+                <ul class="menu">
+                    <li><a href = "index.html">HOME</a></li>
+                    <li><a href = "about.html">ABOUT</a></li> 
+                    
+                    <li><a href = " ">COURSES</a>
+                            <ul>
+                                <li><a href="oop.html">OOP</a></li>
+                                <li><a href="toc.html">TOC</a></li>
+                                <li><a href="java.html">JAVA</a></li>
+                            </ul>                    
+                    </li>
+                    
+                    <li><a href = "contact.html">CONTACT</a></li>
+                    <li><a href = "registration.html">REGISTRATION</a></li>
+                    <li><a href = "login.html">LOGIN</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <section>
+        <div class="text-box">
+
+            <div class="contain">
+                <!--for time-->
+                <span class = "hms"></span> 
+                <!--for AM/PM-->
+                <span class = "ampm"></span> 
+                <br>
+                <!--for date-->
+                <span class = "date"></span>           
+            </div>
+
+            <script>
+                function updateTime(){
+                    var dateInfo = new Date();
+
+                    /* time */
+                    var hr,
+                    _min = (dateInfo.getMinutes() <10)? "0" + dateInfo.getMinutes() : dateInfo.getMinutes(),
+                     sec = (dateInfo.getSeconds() <10)? "0" + dateInfo.getSeconds() : dateInfo.getSeconds(),
+                    ampm = (dateInfo.getHours() >= 12)? "PM" : "AM";
+
+                    // replace 0 with 12 at midnight, subject 12 form hour if 13-23
+
+                    if(dateInfo.getHours() == 0){
+                        hr = 12;
+                    }
+                    else if(dateInfo.getHours() > 12){
+                        hr = dateInfo.getHours() - 12;
+                    }
+                    else{
+                        hr = dateInfo.getHours();
+                    }
+
+
+                    //current time
+                    var currentTime = hr + ":" + _min + ":" + sec;
+
+                    //print time
+                    document.getElementsByClassName("hms")[0].innerHTML = currentTime;
+                    document.getElementsByClassName("ampm")[0].innerHTML = ampm;
+
+
+                    //date
+
+                    var dow =["Saturday","Sunday","Monday","Tuesday","Wednesday","Thurseday","Friday"],
+                        month =["January","February","March","April","May","June","July","Augest","September",
+                                 "October","November","December"],
+                        day = dateInfo.getDate();
+
+                    //store data
+                    var currentDate = dow[dateInfo.getDay()] +", " +month[dateInfo.getMonth()] +""+ day;
+
+                    document.getElementsByClassName("date")[0].innerHTML = currentDate;
+
+                };
+
+                //prit time and date once, then update them every second
+                updateTime();
+                setInterval(function(){
+                    updateTime()
+                },1000);
+
+
+            </script>
+            <h1>Computer Science & Engineering</h1>
+        </div>
+    </section>
+
+     <!-------footer ------>
+
+
+     <section class="footer">
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+        <div>
+            <p>Copyright © Mahisa Maliha 2022</p>
+        </div>
+     </section>
+</body>
+</html>
